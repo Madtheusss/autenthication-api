@@ -1,0 +1,25 @@
+{
+  "name": "autenthication-api",
+  "version": "1.0.0",
+  "description": "Microservicee",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madtheusss/autenthication-api.git"
+  },
+  "author": "Matheus M Diniz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Madtheusss/autenthication-api/issues"
+  },
+  "homepage": "https://github.com/Madtheusss/autenthication-api#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "typescript": "^4.6.2"
+  }
+}

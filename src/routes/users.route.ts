@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
+import { DatabaseError } from "pg";
 import userRepository from "../repositories/user_repository";
 
 const usersRoute = Router();
@@ -12,9 +13,13 @@ usersRoute.get('/users', async (req:Request, res:Response, next:NextFunction) =>
 
 // Buscando um usuario específico GET /users/:uuid
 usersRoute.get('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) =>{
-    const uuid = req.params.uuid;
-    const user = await userRepository.findById(uuid);
-    res.status(StatusCodes.OK).send(user);
+    try {
+        const uuid = req.params.uuid;
+        const user = await userRepository.findById(uuid);
+        res.status(StatusCodes.OK).send(user);
+    } catch(error){
+        next(error);
+    }
 });
 
 //Criando um POST /users
@@ -38,7 +43,7 @@ usersRoute.put('/users/:uuid', async (req: Request <{uuid: string}>, res: Respon
 
 //Criando DELETE /users/:uuid
 usersRoute.delete('/users/:uuid', async (req: Request <{uuid: string}>, res: Response, next: NextFunction) => {
-    const uuid = req.params.uuid
+    const uuid = req.params.uuid;
     await userRepository.remove(uuid);
     res.sendStatus(StatusCodes.OK);
 });

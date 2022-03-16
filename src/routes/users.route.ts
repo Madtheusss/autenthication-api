@@ -14,7 +14,7 @@ usersRoute.get('/users', async (req:Request, res:Response, next:NextFunction) =>
 usersRoute.get('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) =>{
     const uuid = req.params.uuid;
     const user = await userRepository.findById(uuid);
-    res.status(StatusCodes.OK).send({ uuid });
+    res.status(StatusCodes.OK).send(user);
 });
 
 //Criando um POST /users
